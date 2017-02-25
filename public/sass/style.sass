@@ -1,0 +1,63 @@
+$contentHeight: 180px
+$quoteHeight: 175px
+
+
+
+$mobile: "(max-width: 640px)"
+$tablet: "(min-width: 641px) and (max-width: 1023px)"
+$desktop: "(min-width: 1024px)"
+
+blockquote
+  background: #f9f9f9
+  border-left: 10px solid #ccc
+  height: $quoteHeight
+  padding: 5px 5px
+
+  p
+    display: inline
+
+.articleGridDisplay
+  width: 195px
+  float: left
+  border: 1px green solid
+
+
+
+.sidebar
+
+  section
+    i
+      font-size: 16px
+      cursor: pointer
+    .displayControl
+      width: 100%
+      text-align: left
+
+
+
+@media #{$mobile}
+  .sidebar
+    border-bottom: 5px #ccc solid
+    margin-bottom: 10px
+    section
+      .displayControl
+        display: none
+
+@media #{$tablet}
+  .sidebar
+    border-bottom: 5px #ccc solid
+    margin-bottom: 10px
+    section
+      .displayControl
+        display: none
+
+
+
+
+
+
+
+
+
+
+

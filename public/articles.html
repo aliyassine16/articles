@@ -1,0 +1,80 @@
+<!--loader icon-->
+<div class="row" style="min-height: 100px">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="text-center" ng-show="loading">
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </p>
+    </div>
+</div>
+
+<!-- list of articles-->
+<div class="row">
+
+    <div class="sidebar col-xs-12 col-sm-12 col-md-2 col-lg-2" ng-class="displayMode">
+        <section>
+            <div class="displayControl">
+                <i class="glyphicon glyphicon glyphicon-th" ng-click="displayGrid()"></i>
+                &nbsp;
+                <i class="glyphicon glyphicon glyphicon-th-list" ng-click="displayList()"></i>
+            </div>
+            <div>
+                <label>Sort By:</label>
+                <select ng-model="sortingCriteria" ng-change="sortArticles()">
+                    <option value="timestamp"> Date</option>
+                    <option value="score"> Score</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label>What is Your Favorite Category?</label>
+                <div ng-repeat="category in categories">
+                    <input
+                            type="checkbox"
+                            name="selectedCategory[]"
+                            value="{{category.id}}"
+                            ng-checked="selection.indexOf(category.id) > -1"
+                            ng-click="toggleSelection(category.id)"
+                    >
+                    <span style="color:{{category.color}};">{{category.title}}</span>
+                </div>
+
+
+                </fieldset>
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <div class="row" ng-repeat="articleGroup in bunchOfArticles">
+            <div ng-class="displayClass" ng-repeat="article in articleGroup">
+                <blockquote style="border-color:{{getCategoryById(article.category).color}}; ">
+                    <div><strong>{{ article.title }}</strong></div>
+                    <div>Date: {{ article.timestamp | date:'mediumDate' }}</div>
+                    <div>Score: {{ article.score }}</div>
+                    <div>Category: {{ getCategoryById(article.category).title }}</div>
+                    <!--<span class="excerpt" ng-bind-html="getHtmlFirstParagraph(article.html)"></span>-->
+                    <a href="#/{{article.id}}">read more</a>
+                </blockquote>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- message in case there is no article-->
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="alert alert-info" ng-if="buncharticles.length==0">
+            <strong>Info!</strong> We don't have any article for you!
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
