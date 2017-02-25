@@ -1,8 +1,6 @@
 $contentHeight: 180px
 $quoteHeight: 175px
 
-
-
 $mobile: "(max-width: 640px)"
 $tablet: "(min-width: 641px) and (max-width: 1023px)"
 $desktop: "(min-width: 1024px)"
@@ -10,18 +8,40 @@ $desktop: "(min-width: 1024px)"
 blockquote
   background: #f9f9f9
   border-left: 10px solid #ccc
-  height: $quoteHeight
+  min-height: $quoteHeight
   padding: 5px 5px
 
   p
     display: inline
 
+.content
+  padding: 0px
+  margin: 0px
+
+.contentDetail
+  background: #f9f9f9
+  border-left: 2px solid #ccc
+  font: 300 16px Verdana
+  .excerpt
+    margin: 15px
+
+
+
+
 .articleGridDisplay
   width: 195px
   float: left
-  border: 1px green solid
+  border: 0px green solid
+  .excerpt
+    display: none
 
 
+.articleListDisplay
+  width: 100%
+  float: none
+  border: 0px green solid
+  .excerpt
+    display: inline
 
 .sidebar
 
@@ -35,13 +55,11 @@ blockquote
 
 
 
-@media #{$mobile}
-  .sidebar
-    border-bottom: 5px #ccc solid
-    margin-bottom: 10px
-    section
-      .displayControl
-        display: none
+
+
+
+
+
 
 @media #{$tablet}
   .sidebar
@@ -50,6 +68,22 @@ blockquote
     section
       .displayControl
         display: none
+  .articleGridDisplay
+    width: 100%
+    float: none
+    border: 0px green solid
+    .excerpt
+      display: inline
+
+@media #{$mobile}
+  .sidebar
+    border-bottom: 5px #ccc solid
+    margin-bottom: 10px
+    section
+      .displayControl
+        display: none
+
+
 
 
 

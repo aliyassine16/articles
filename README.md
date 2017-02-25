@@ -7,7 +7,7 @@
 
 1. Clone the repository: `git clone`
 2. Install the application: `npm install`
-3. Generate the css: `gulp sass`
+3. Generate the css: `gulp sass` but not compulsory 
 3. Start the server: `node server.js`
 4. View in browser at `http://localhost:3000`
 
@@ -17,7 +17,9 @@
 
 1.install Mocha :sudo npm install -g mocha.
 
-2- navigate to the folder "test" and run "mocha".
+2.Start the server: `node server.js`
+
+3- navigate to the folder "test" and run "mocha".
 
 
 

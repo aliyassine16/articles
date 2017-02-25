@@ -1,52 +1,37 @@
-app.controller("articleController", ['$scope', '$http', 'ArticlesService', '$location', '$rootScope', '$sce', function ($scope, $http, ArticlesService, $location, $rootScopes, $sce) {
+app.controller("articleController", ['$scope', '$http', 'ArticlesService', '$location', '$rootScope', '$sce', '$routeParams', function ($scope, $http, ArticlesService, $location, $rootScope, $sce, $routeParams) {
 
     $scope.loading = true;
 
 
-    var listSize = 4;
+    // css defined classes
+    var gridDisplay = ['articleGridDisplay'];
 
-
-    var gridDisplay = ['col-xs-12', 'col-sm-12', 'col-md-3', 'col-lg-3'];
-    var defaultDisplay = ['col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'];
+    var defaultDisplay = ['articleListDisplay'];
 
     $scope.displayClass = defaultDisplay;
 
-    $scope.displayMode = "";
 
+    //default soting criteria
     $scope.sortingCriteria = "timestamp";
 
-
-    $scope.sort = function (keyname) {
-        $scope.sortKey = keyname;   //set the sortKey to the param passed
-        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
-    }
 
     // GET =====================================================================
 
     var init = function () {
         ArticlesService.get()
             .success(function (response) {
+
+                // save the articles in the root scope
+                $rootScope.data = response.data;
+
                 $scope.articles = response.data.articles;
                 $scope.categories = response.data.categories;
                 $scope.loading = false;
                 $scope.articles.sort(custom_sort_by_timestamp);
-                $scope.bunchOfArticles = arrayChunck($scope.articles, listSize);
+
             });
     };
 
-
-    var arrayChunck = function (arr, len) {
-
-        var chunks = [],
-            i = 0,
-            n = arr.length;
-
-        while (i < n) {
-            chunks.push(arr.slice(i, i += len));
-        }
-
-        return chunks;
-    }
 
     $scope.getCategoryById = function (categoryId) {
         var len = $scope.categories.length;
@@ -60,16 +45,13 @@ app.controller("articleController", ['$scope', '$http', 'ArticlesService', '$loc
     };
 
 
+    // sort articles by date or score
     $scope.sortArticles = function () {
         if ($scope.sortingCriteria == "timestamp") {
             $scope.articles = $scope.articles.sort(custom_sort_by_timestamp);
         } else {
             $scope.articles = $scope.articles.sort(custom_sort_by_score);
         }
-
-
-        $scope.bunchOfArticles = arrayChunck($scope.articles, listSize);
-
 
     }
 
@@ -92,16 +74,12 @@ app.controller("articleController", ['$scope', '$http', 'ArticlesService', '$loc
 
     //filter by selected categories
 
-    function selectionFilter(article) {
-        if ($scope.selection.length == 0) {
-            return true; // always return true
-
-        }
-        return $scope.selection.indexOf(article.category) >= 0;
-    }
 
     $scope.getHtmlFirstParagraph = function (html) {
         return $sce.trustAsHtml(html.substring(0, html.indexOf('</p>'))); // the first paragraph only
+    };
+    $scope.getHtml = function (html) {
+        return $sce.trustAsHtml(html); // the first paragraph only
     };
 
 
@@ -134,11 +112,37 @@ app.controller("articleController", ['$scope', '$http', 'ArticlesService', '$loc
         else {
             $scope.selection.push(categoryId);
         }
-        console.log($scope.selection);
+        //console.log($scope.selection);
 
 
         // apply ghe filters
 
+    };
+
+    $scope.filterSelection = function (article) {
+        if ($scope.selection.length == 0) {
+            // no filter selection
+            return true;
+        }
+        //console.log($scope.selection.indexOf(article.category));
+        if ($scope.selection.indexOf(article.category) >= 0) {
+            return true;
+        }
+        return false;
+    };
+
+
+    // show the selected article only
+    $scope.filterSelectedArticle = function (article) {
+
+        console.log($routeParams.articleId);
+        if ($routeParams != null && $routeParams.articleId != null && $routeParams.articleId != undefined) {
+
+            if ($routeParams.articleId == article.category) {
+                return true;
+            }
+        }
+        return false;
     };
 
 

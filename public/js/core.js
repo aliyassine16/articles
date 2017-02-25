@@ -5,6 +5,10 @@ app.config(function ($routeProvider) {
             templateUrl: "articles.html",
             controller: "articleController"
         })
+        .when("/:articleId", {
+            templateUrl: "articleDetail.html",
+            controller: "articleDetailController"
+        })
         .otherwise({
             redirectTo: '/'
         });

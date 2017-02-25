@@ -1,0 +1,29 @@
+<!--loader icon-->
+<div class="row" style="min-height: 100px">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="text-center" ng-show="loading">
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="contentDetail col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div ng-repeat="article in articles | filter:filterSelectedArticle">
+            <div><strong>{{ article.title }}</strong></div>
+            <div>Date: {{ article.timestamp | date:'mediumDate' }}</div>
+            <div>Score: {{ article.score }}</div>
+            <span class="excerpt" ng-bind-html="getHtml(article.html)"></span>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+

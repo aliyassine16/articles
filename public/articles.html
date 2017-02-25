@@ -44,20 +44,19 @@
             </div>
         </section>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-        <div class="row" ng-repeat="articleGroup in bunchOfArticles">
-            <div ng-class="displayClass" ng-repeat="article in articleGroup">
-                <blockquote style="border-color:{{getCategoryById(article.category).color}}; ">
-                    <div><strong>{{ article.title }}</strong></div>
-                    <div>Date: {{ article.timestamp | date:'mediumDate' }}</div>
-                    <div>Score: {{ article.score }}</div>
-                    <div>Category: {{ getCategoryById(article.category).title }}</div>
-                    <!--<span class="excerpt" ng-bind-html="getHtmlFirstParagraph(article.html)"></span>-->
-                    <a href="#/{{article.id}}">read more</a>
-                </blockquote>
-            </div>
-
+    <div class="content col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <div ng-class="displayClass" ng-repeat="article in articles | filter:filterSelection">
+            <blockquote style="border-color:{{getCategoryById(article.category).color}}; ">
+                <div><strong>{{ article.title }}</strong></div>
+                <div>Date: {{ article.timestamp | date:'mediumDate' }}</div>
+                <div>Score: {{ article.score }}</div>
+                <div>Category: {{ getCategoryById(article.category).title }}</div>
+                <span class="excerpt" ng-bind-html="getHtmlFirstParagraph(article.html)"></span>
+                <a href="#/{{article.id}}">read more</a>
+            </blockquote>
         </div>
+
+
     </div>
 
 </div>

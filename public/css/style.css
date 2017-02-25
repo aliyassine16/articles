@@ -1,15 +1,35 @@
 blockquote {
   background: #f9f9f9;
   border-left: 10px solid #ccc;
-  height: 175px;
+  min-height: 175px;
   padding: 5px 5px; }
   blockquote p {
     display: inline; }
 
+.content {
+  padding: 0px;
+  margin: 0px; }
+
+.contentDetail {
+  background: #f9f9f9;
+  border-left: 2px solid #ccc;
+  font: 300 16px Verdana; }
+  .contentDetail .excerpt {
+    margin: 15px; }
+
 .articleGridDisplay {
   width: 195px;
   float: left;
-  border: 1px green solid; }
+  border: 0px green solid; }
+  .articleGridDisplay .excerpt {
+    display: none; }
+
+.articleListDisplay {
+  width: 100%;
+  float: none;
+  border: 0px green solid; }
+  .articleListDisplay .excerpt {
+    display: inline; }
 
 .sidebar section i {
   font-size: 16px;
@@ -19,14 +39,20 @@ blockquote {
   width: 100%;
   text-align: left; }
 
-@media (max-width: 640px) {
+@media (min-width: 641px) and (max-width: 1023px) {
   .sidebar {
     border-bottom: 5px #ccc solid;
     margin-bottom: 10px; }
     .sidebar section .displayControl {
-      display: none; } }
+      display: none; }
+  .articleGridDisplay {
+    width: 100%;
+    float: none;
+    border: 0px green solid; }
+    .articleGridDisplay .excerpt {
+      display: inline; } }
 
-@media (min-width: 641px) and (max-width: 1023px) {
+@media (max-width: 640px) {
   .sidebar {
     border-bottom: 5px #ccc solid;
     margin-bottom: 10px; }
