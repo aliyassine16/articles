@@ -9,14 +9,13 @@
 
 
 <div class="row">
-    <div class="contentDetail col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div ng-repeat="article in articles | filter:filterSelectedArticle">
-            <div><strong>{{ article.title }}</strong></div>
-            <div>Date: {{ article.timestamp | date:'mediumDate' }}</div>
-            <div>Score: {{ article.score }}</div>
-            <span class="excerpt" ng-bind-html="getHtml(article.html)"></span>
-
-        </div>
+    <div class="contentDetail col-xs-12 col-sm-12 col-md-12 col-lg-12"
+         ng-repeat="article in articles | filter:filterSelectedArticle">
+        <div><strong>{{ article.title }}</strong></div>
+        <div>Date: {{ article.timestamp | date:'mediumDate' }}</div>
+        <div>Score: {{ article.score }}</div>
+        <span class="excerpt" ng-bind-html="getHtml(article.html)"></span>
+        <div><a href="/">Back to Articles</a></div>
     </div>
 
 </div>

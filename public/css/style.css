@@ -13,7 +13,8 @@ blockquote {
 .contentDetail {
   background: #f9f9f9;
   border-left: 2px solid #ccc;
-  font: 300 16px Verdana; }
+  font: 300 16px Verdana;
+  padding: 10px; }
   .contentDetail .excerpt {
     margin: 15px; }
 
